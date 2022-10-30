@@ -1,5 +1,4 @@
 import math
-from multiprocessing.sharedctypes import Value
 
 #Get Inputs
 while True: 
@@ -44,76 +43,67 @@ while True:
 
 #Define functions for alpha
 def wa_ag():
-    waag = math.acos(g / a)
-    waag = math.degrees(waag)
-    return waag
+    if a == 0 or g == 0:
+        return None
+    else:
+        while True:
+            try:
+                waag = math.degrees(math.atan(g / a))
+                return waag
+            except ZeroDivisionError:
+                waag = None
+                break
+            else:
+                break
 
 def wa_ah():
-    waah = math.acos(a / h)
-    waah = math.degrees(waah)
-    return waah
+    if a == 0 or h == 0:
+        return None
+    else:
+        while True:
+            try:
+                waah = math.degrees(math.acos(a / h))
+                return waah
+            except ZeroDivisionError:
+                waah = None
+                break
+            else:
+                break
 
 def wa_gh():
-    wagh = math.asin(h / g)
-    wagh = math.degrees(wagh)
-    return wagh
+    if g == 0 or h == 0:
+        return None
+    else:
+        while True:
+            try:
+                wagh = math.degrees(math.asin(g / h))
+                return wagh
+            except ZeroDivisionError:
+                wagh = None
+                break
+            else:
+                break
 
 def wa_wb():
     wawb = math.degrees(math.radians(90) - beta)
     return wawb
 
-#Define functions for beta
-def wb_ag():
-    wbag = math.atan(g / a)
-    wbag = math.degrees(wbag)
-    return wbag
-    
-def wb_ah():
-    wbah = math.acos(a / h)
-    wbah = math.degrees(wbah)
-    return wbah
-
-def wb_gh():
-    wbgh = math.asin(h / g)
-    wbgh = math.degrees(wbgh)
-    return wbgh
-
-def wb_wa():
-    wbwa = math.degrees(math.radians(90) - alpha)
-    return wbwa
 
 #printing functions of alpha
 while True:
     if alpha > 0:
         break
-    elif a + g > 0:
+    elif a > 0 and g > 0:
         print(f"Alpha: {wa_ag()}°")
         break
-    elif a + h > 0:
+    elif a > 0 and h > 0:
         print(f"Alpha: {wa_ah()}°")
         break
-    elif g + h > 0:
+    elif g > 0 and h > 0:
         print(f"Alpha: {wa_gh()}°")
         break
     else:
         print(f"Alpha: {wa_wb()}°")
-        break
-
-#printing functions of beta
-while True:
-    if beta > 0:
-        break
-    elif a + g > 0:
-        print(f"Beta: {wb_ag()}°")
-        break
-    elif a + h > 0:
-        print(f"Beta: {wb_ah()}°")
-        break
-    elif g + h > 0:
-        print(f"Beta: {wb_gh()}°")
-        break
-    else:
-        print(f"Beta: {wb_wa()}°")
         break
 
 
