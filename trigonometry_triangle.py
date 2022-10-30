@@ -44,10 +44,10 @@ while True:
 
 #Define functions for alpha
 def wa_ag():
-    waag = math.atan(g / a)
+    waag = math.acos(g / a)
     waag = math.degrees(waag)
     return waag
-    
+
 def wa_ah():
     waah = math.acos(a / h)
     waah = math.degrees(waah)
@@ -81,7 +81,6 @@ def wb_gh():
 def wb_wa():
     wbwa = math.degrees(math.radians(90) - alpha)
     return wbwa
-
 
 #printing functions of alpha
 while True:
