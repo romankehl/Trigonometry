@@ -6,6 +6,8 @@ print("Die Angaben müssen aus Sicht von alpha geschen!")
 while True: 
     try:
         a = float(input("Ankathete: ").strip()) #Ankathete von Winkel alpha
+        if a == 0:
+            a = None
     except ValueError:
         print("Ankathete muss eine Zahl sein!")
     else:
@@ -14,6 +16,8 @@ while True:
 while True:
     try:
         g = float(input("Gegenkathete: ").strip()) #Gegenkathete von winkel alpha
+        if g == 0:
+            g = None
     except ValueError:
         print("Gegenkathete muss eine Zahl sein!")
     else:
@@ -22,6 +26,8 @@ while True:
 while True:
     try:
         h = float(input("Hypothenuse: ").strip())
+        if h == 0:
+            h = None
     except ValueError:
         print("Hypothenuse muss eine Zahl sein!")
     else:
@@ -30,6 +36,8 @@ while True:
 while True:
     try:
         alpha = math.radians(float(input("Alpha: ").strip()))
+        if alpha == 0:
+            alpha = None
     except ValueError:
         print("Alpha muss eine Zahl sein!")
     else:
@@ -38,70 +46,66 @@ while True:
 while True:
     try:
         beta = math.radians(float(input("Beta: ").strip()))
+        if beta == 0:
+            beta = None
     except ValueError:
         print("Beta muss eine Zahl sein!")
     else:
         break
 
+#Clear Terminal Window after all inputs are given
+import os
+os.system('cls')
+
+#Printing Error message for no input
+import sys
+if a == None and g == None and h == None and alpha == None and beta == None: 
+    sys.exit("Nicht genügend Inputs!\nstarte das Programm neu")
+
+#Print Error message if only one side is inputed
+if (a != None and g == None and h == None) or (g != None and a == None and h == None) or (h != None and a == None and g == None):
+    if alpha == None and beta == None:
+        sys.exit("Es müssen mindestens zwei Seiten gegeben sein!\nstarte das Programm neu")
+
+ #Print Error message if h is bigger than a or g
+if h == None:
+    pass
+elif a == None:
+    if g > h:
+        sys.exit("Die Hypothenuse ist grösser als die Gegenkathete!\nstarte das Programm neu")
+elif g == None:
+    if a > h:
+        sys.exit("Die Hypothenuse ist grösser als die Gegenkathete!\nstarte das Programm neu")
+
+#print Error message if alpha + beta != 90°
+if alpha != None and beta != None:
+    if alpha + beta != 90:
+        sys.exit("Alpha und beta müssen zusammen 90° ergeben!\nstarte das Programm neu")
+
 #Define functions for alpha
 def wa_ag():
-    if a == 0 or g == 0:
-        return None
-    else:
-        while True:
-            try:
-                waag = math.degrees(math.atan(g / a))
-                return waag
-            except ZeroDivisionError:
-                waag = None
-                break
-            else:
-                break
-
+    return math.degrees(math.atan(g / a))
+        
 def wa_ah():
-    if a == 0 or h == 0:
-        return None
-    else:
-        while True:
-            try:
-                waah = math.degrees(math.acos(a / h))
-                return waah
-            except ZeroDivisionError:
-                waah = None
-                break
-            else:
-                break
+    return math.degrees(math.acos(a / h))
 
 def wa_gh():
-    if g == 0 or h == 0:
-        return None
-    else:
-        while True:
-            try:
-                wagh = math.degrees(math.asin(g / h))
-                return wagh
-            except ZeroDivisionError:
-                wagh = None
-                break
-            else:
-                break
+    return math.degrees(math.asin(g / h))
 
 def wa_wb():
-    wawb = math.degrees(math.radians(90) - beta)
-    return wawb
-
+    return math.degrees(math.radians(90) - beta)
 
 #printing functions of alpha
 while True:
-    if alpha > 0:
+    if alpha != None:
         break
-    elif a > 0 and g > 0:
+    elif a != None and g != None:
         print(f"Alpha: {wa_ag(): .3f}°")
         break
-    elif a > 0 and h > 0:
+    elif a != None and h != None:
         print(f"Alpha: {wa_ah(): .3f}°")
         break
-    elif g > 0 and h > 0:
+    elif g != None and h != None:
         print(f"Alpha: {wa_gh(): .3f}°")
         break
     else:
@@ -113,64 +117,36 @@ while True:
 
 #Define functions for beta
 def wb_ag():
-    if a == 0 or g == 0:
-        return None
-    else:
-        while True:
-            try:
-                wbag = math.degrees(math.atan(a / g))
-                return wbag
-            except ZeroDivisionError:
-                wbag = None
-                break
-            else:
-                break
+        return math.degrees(math.atan(a / g))
 
 def wb_ah():
-    if a == 0 or h == 0:
-        return None
-    else:
-        while True:
-            try:
-                wbah = math.degrees(math.acos(g / h))
-                return wbah
-            except ZeroDivisionError:
-                wbah = None
-                break
-            else:
-                break
+        return math.degrees(math.acos(g / h))
 
 def wb_gh():
-    if g == 0 or h == 0:
-        return None
-    else:
-        while True:
-            try:
-                wbgh = math.degrees(math.asin(a / h))
-                return wbgh
-            except ZeroDivisionError:
-                wbgh = None
-                break
-            else:
-                break
+        return math.degrees(math.asin(a / h))
 
 def wb_wa():
-    wbwb = math.degrees(math.radians(90) - alpha)
-    return wbwb
+        return math.degrees(math.radians(90) - alpha)
 
 #printing functions of beta
 while True:
-    if beta > 0:
+    if beta != None:
         break
-    elif a > 0 and g > 0:
+    elif a != None and g != None:
         print(f"Beta: {wb_ag(): .3f}°")
         break
-    elif g > 0 and h > 0:
+    elif g != None and h != None:
         print(f"Beta: {wb_ah(): .3f}°")
         break
-    elif a > 0 and h > 0:
+    elif a != None and h != None:
         print(f"Beta: {wb_gh(): .3f}°")
         break
     else:
         print(f"Beta: {wb_wa(): .3f}°")
         break
+
+#Define functions for Ankathete
+def a_gwa():
+    return g / math.sin(alpha)
+def a_gwb():
+    return g / math.sin(alpha)
