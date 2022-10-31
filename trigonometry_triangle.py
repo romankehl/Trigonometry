@@ -147,6 +147,36 @@ while True:
 
 #Define functions for Ankathete
 def a_gwa():
-    return g / math.sin(alpha)
+    return g / math.degrees(math.sin(alpha))
+
 def a_gwb():
-    return g / math.sin(alpha)
+    return g * math.degrees(math.tan(beta))
+
+def a_hwa():
+    return h * math.degrees(math.cos(alpha))
+
+def a_hwb():
+    return h * math.degrees(math.sin(beta))
+
+def a_gh():
+    return math.sqrt(h**2 - g**2)
+
+#print functions of Ankathete
+while True:
+    if a != None:
+        break
+    elif g != None and alpha != None:
+        print(f"Ankathete: {a_gwa(): .3f}")
+        break
+    elif g != None and beta != None:
+        print(f"Ankathete: {a_gwb(): .3f}")
+        break
+    elif h != None and alpha != None:
+        print(f"Ankathete: {a_hwa(): .3f}")
+        break
+    elif h != None and beta != None:
+        print(f"Ankathete: {a_hwb(): .3f}")
+        break
+    else:
+        print(f"Ankathete: {a_gh(): .3f}")
+        break
