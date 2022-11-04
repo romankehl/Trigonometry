@@ -1,6 +1,5 @@
 import math
 
-print("Die Angaben müssen aus Sicht von alpha geschen!")
 
 #Get Inputs
 while True: 
@@ -71,7 +70,9 @@ if (a != None and g == None and h == None) or (g != None and a == None and h == 
 if h == None:
     pass
 elif a == None:
-    if g > h:
+    if g == None:
+        pass
+    elif g > h:
         sys.exit("Die Hypothenuse ist grösser als die Gegenkathete!\nstarte das Programm neu")
 elif g == None:
     if a > h:
@@ -113,8 +114,6 @@ while True:
         break
 
 
-#Ankathete und Gegenkathete müssen für Beta getauscht werden
-
 #Define functions for beta
 def wb_ag():
         return math.degrees(math.atan(a / g))
@@ -145,18 +144,19 @@ while True:
         print(f"Beta: {wb_wa(): .3f}°")
         break
 
+
 #Define functions for Ankathete
 def a_gwa():
-    return g / math.degrees(math.sin(alpha))
+    return g / math.tan((alpha))
 
 def a_gwb():
-    return g * math.degrees(math.tan(beta))
+    return g / (math.tan(beta))
 
 def a_hwa():
-    return h * math.degrees(math.cos(alpha))
+    return h * (math.cos(alpha))
 
 def a_hwb():
-    return h * math.degrees(math.sin(beta))
+    return h * (math.sin(beta))
 
 def a_gh():
     return math.sqrt(h**2 - g**2)
@@ -179,4 +179,78 @@ while True:
         break
     else:
         print(f"Ankathete: {a_gh(): .3f}")
+        break
+
+
+#Define functions for Gegenkathete
+def g_awa():
+    return a / (math.tan(alpha))
+
+def g_awb():
+    return g / (math.tan(beta))
+
+def g_hwa():
+    return h * (math.sin(alpha))
+
+def g_hwb():
+    return h * (math.sin(beta))
+
+def g_ah():
+    return math.sqrt(h**2 - a**2)
+
+#print functions of Gegenkathete
+while True:
+    if g != None:
+        break
+    elif a != None and alpha != None:
+        print(f"Gegenkathete: {g_awa(): .3f}")
+        break
+    elif a != None and beta != None:
+        print(f"Gegenkathete: {g_awb(): .3f}")
+        break
+    elif h != None and alpha != None:
+        print(f"Gegenkathete: {g_hwa(): .3f}")
+        break
+    elif h != None and beta != None:
+        print(f"Gegenkathete: {g_hwb(): .3f}")
+        break
+    else:
+        print(f"Gegenkathete: {g_ah(): .3f}")
+        break
+
+
+#Define functions for Hypothenuse
+def h_ag():
+    return math.sqrt(a**2 + g**2)
+
+def h_gwa():
+    return g / math.sin(alpha)
+
+def h_gwb():
+    return a / math.sin(beta)
+
+def h_awa():
+    return a / math.cos(alpha)
+
+def h_awb():
+    return g / math.cos(beta)
+
+#print functions of Hypothenuse
+while True:
+    if h != None:
+        break
+    elif a != None and g != None:
+        print(f"Hypothenuse: {h_ag(): .3f}")
+        break
+    elif g != None and alpha != None:
+        print(f"Hypothenuse: {h_gwa(): .3f}")
+        break
+    elif g != None and beta != None:
+        print(f"Hypothenuse: {h_gwb(): .3f}")
+        break
+    elif a != None and alpha != None:
+        print(f"Hypothenuse: {h_awa(): .3f}")
+        break
+    elif a != None and beta != None:
+        print(f"Hypothenuse: {h_awb(): .3f}")
         break
