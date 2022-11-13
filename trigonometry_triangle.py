@@ -1,6 +1,5 @@
 import math
 
-
 #Get Inputs
 while True: 
     try:
@@ -82,6 +81,7 @@ elif g == None:
 if alpha != None and beta != None:
     if alpha + beta != 90:
         sys.exit("Alpha und beta müssen zusammen 90° ergeben!\nstarte das Programm neu")
+
 
 #Define functions for alpha
 def wa_ag():
@@ -187,7 +187,7 @@ def g_awa():
     return a / (math.tan(alpha))
 
 def g_awb():
-    return g / (math.tan(beta))
+    return a / (math.tan(beta))
 
 def g_hwa():
     return h * (math.sin(alpha))
@@ -245,12 +245,12 @@ while True:
     elif g != None and alpha != None:
         print(f"Hypothenuse: {h_gwa(): .3f}")
         break
-    elif g != None and beta != None:
+    elif a != None and beta != None:
         print(f"Hypothenuse: {h_gwb(): .3f}")
         break
     elif a != None and alpha != None:
         print(f"Hypothenuse: {h_awa(): .3f}")
         break
-    elif a != None and beta != None:
+    elif g != None and beta != None:
         print(f"Hypothenuse: {h_awb(): .3f}")
         break
